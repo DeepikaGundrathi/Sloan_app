@@ -62,13 +62,12 @@ prediction_proba = model.predict_proba(input_df)
 
 st.subheader('Prediction')
 
-# Define the class labels based on your model's classes
-class_labels = ['Galaxy', 'QSO', 'Star']
-
-# Map prediction to class label
-predicted_class_label = class_labels[prediction[0]]
-
-st.write(predicted_class_label)
+# Ensure prediction is in the expected format
+if isinstance(prediction, np.ndarray) and prediction.size > 0:
+    predicted_class_label = prediction[0]  # Assuming prediction is a 1D array
+    st.write(predicted_class_label)
+else:
+    st.write("Unable to make prediction. Please check your input.")
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
