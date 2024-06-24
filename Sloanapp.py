@@ -61,9 +61,14 @@ prediction = model.predict(input_df)
 prediction_proba = model.predict_proba(input_df)
 
 st.subheader('Prediction')
-object_type = ['Galaxy', 'QSO', 'Star']
-# Ensure prediction[0] is converted to int to avoid type errors
-st.write(object_type[int(prediction[0])])
+
+# Define the class labels based on your model's classes
+class_labels = ['Galaxy', 'QSO', 'Star']
+
+# Map prediction to class label
+predicted_class_label = class_labels[prediction[0]]
+
+st.write(predicted_class_label)
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
