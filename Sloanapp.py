@@ -62,7 +62,8 @@ prediction_proba = model.predict_proba(input_df)
 
 st.subheader('Prediction')
 object_type = ['Galaxy', 'QSO', 'Star']
-st.write(object_type[prediction[0]])
+# Ensure prediction[0] is converted to int to avoid type errors
+st.write(object_type[int(prediction[0])])
 
 st.subheader('Prediction Probability')
 st.write(prediction_proba)
